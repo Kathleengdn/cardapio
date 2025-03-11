@@ -7,7 +7,7 @@
     <title>Cardápio | Afesu </title>
 
     <!-- VUE JS -->
-      <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 
     <!--  shift + alt + a  = comentário -->
 
@@ -69,14 +69,14 @@
 
                                 <div class="form-check form-check-inline"> <!-- pão gergelim -->
 
-                                    <input type="radio" class="form-check-input">
+                                    <input type="radio" class="form-check-input" value="gergelim" v-model="inputTipoPao">
                                     <label class="form-check-label"> Gergelim </label>
 
                                 </div> <!-- fim pão gergelim -->
 
                                 <div class="form-check form-check-inline"> <!--pão australiano -->
 
-                                    <input type="radio" class="form-check-input">
+                                    <input type="radio" class="form-check-input"  value="gergelim" v-model="inputTipoPao">
                                     <label class="form-check-label"> Australiano </label>
 
                                 </div> <!-- fim pão autraliano -->
@@ -100,7 +100,26 @@
       // const = constante - vm = view (html) model (JS)      
         const vm = new Vue ({
             el: "#app",
-            
+            /* atributos*/
+            data: {
+                inputTipoPao: '',
+
+                etapa: 1,
+
+            },
+            /*imagem dos ingredientes*/
+            computed: {
+                pao () {
+                    switch (this.inputTipoPao) {
+                        case 'gergelim' :
+                           return [ 'IMG/pao_gergelim_superior.png', 'IMG/pao_gergelim_inferior.png' ] 
+                        case 'australiano' :
+                           return [ 'IMG/pao_australiano_superior.png', 'IMG/pao_australiano_inferior.png' ]   
+                        default:
+                           return [ 'IMG/padrao/pao_superior.png', 'IMG/padrao/pao_inferior.png' ]    
+                    }
+                }
+            },
             
         }) 
 
