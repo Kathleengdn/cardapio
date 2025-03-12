@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,12 +21,12 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <div class="container justify-content-center">
-           <span class="navbar-brand mb-0 H1">
-            Monte o seu lanche
-           </span>
+            <span class="navbar-brand mb-0 H1">
+                Monte o seu lanche
+            </span>
         </div>
     </nav>
-    
+
     <div class="container"> <!-- Começo container -->
 
         <div id="app"> <!-- Começo app -->
@@ -55,75 +56,110 @@
                 </div>
 
                 <div class="col-md-6" v-if="etapa == 1"><!-- seleção de produtos -->
-                    
-                    <div class="row mt-2"><!-- tipo de pão -->
+
+                    <div class="row mt-2">
+                        
+                        <!-- tipo de pão -->
                         <div class="col">
 
                             <div class="card">
                                 <div class="card-header">
-                                    Tipo de Pão 
+                                    Tipo de Pão
+                                </div>
+
+
+                                <div class="card-body">
+
+                                    <div class="form-check form-check-inline"> <!-- pão gergelim -->
+
+                                        <input type="radio" class="form-check-input" value="gergelim"
+                                            v-model="inputTipoPao">
+                                        <label class="form-check-label"> Gergelim </label>
+
+                                    </div> <!-- fim pão gergelim -->
+
+                                    <div class="form-check form-check-inline"> <!--pão australiano -->
+
+                                        <input type="radio" class="form-check-input" value="australiano"
+                                            v-model="inputTipoPao">
+                                        <label class="form-check-label"> Australiano </label>
+
+                                    </div> <!-- fim pão autraliano -->
+
                                 </div>
                             </div>
+                        </div><!-- fim tipo de pão  -->
 
-                            <div class="card-body">
+                        <!-- salada -->
+                        <div class="row mt-2">
+                            <div class="col">
+                                <div class="card">
 
-                                <div class="form-check form-check-inline"> <!-- pão gergelim -->
+                                    <div class="card-header">
+                                        Salada
+                                    </div>
 
-                                    <input type="radio" class="form-check-input" value="gergelim" v-model="inputTipoPao">
-                                    <label class="form-check-label"> Gergelim </label>
+                                    <div class="card-body">
 
-                                </div> <!-- fim pão gergelim -->
+                                        <div class="form-check ">
 
-                                <div class="form-check form-check-inline"> <!--pão australiano -->
+                                            <input type="checkbox" class="form-check-input" value="alface" v-model="">
+                                            <label class="form-check-label" >Alface</label>
 
-                                    <input type="radio" class="form-check-input"  value="gergelim" v-model="inputTipoPao">
-                                    <label class="form-check-label"> Australiano </label>
+                                        </div>
 
-                                </div> <!-- fim pão autraliano -->
+                                      <!--    <div class="form-check">
 
+                                        </div> -->
+
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div><!-- fim tipo de pão  -->
-                    
 
-                </div> <!-- fim seleção de produtos -->
 
-            </div><!-- fim row -->
+                    </div> <!-- fim seleção de produtos -->
 
-        </div><!-- fim App -->
+                </div><!-- fim row -->
 
-    </div><!-- fim container -->
+            </div><!-- fim App -->
 
-    <!-- instancia VUE -->
-    <script>
-      // => comentarios no script
-      // const = constante - vm = view (html) model (JS)      
-        const vm = new Vue ({
-            el: "#app",
-            /* atributos*/
-            data: {
-                inputTipoPao: '',
+        </div><!-- fim container -->
 
-                etapa: 1,
+        <!-- instancia VUE -->
+        <script>
+            // => comentarios no script
+            // const = constante - vm = view (html) model (JS)      
+            const vm = new Vue({
+                el: "#app",
+                /* atributos*/
+                data: {
+                    inputTipoPao: '',
 
-            },
-            /*imagem dos ingredientes*/
-            computed: {
-                pao () {
-                    switch (this.inputTipoPao) {
-                        case 'gergelim' :
-                           return [ 'IMG/pao_gergelim_superior.png', 'IMG/pao_gergelim_inferior.png' ] 
-                        case 'australiano' :
-                           return [ 'IMG/pao_australiano_superior.png', 'IMG/pao_australiano_inferior.png' ]   
-                        default:
-                           return [ 'IMG/padrao/pao_superior.png', 'IMG/padrao/pao_inferior.png' ]    
-                    }
-                }
-            },
-            
-        }) 
+                    etapa: 1,
 
-    </script>
+                },
+                /*imagem dos ingredientes*/
+                computed: {
+                    pao() {
+                        switch (this.inputTipoPao) {
+                            case 'gergelim':
+                                return ['IMG/pao_gergelim_superior.png', 'IMG/pao_gergelim_inferior.png']
+                            case 'australiano':
+                                return ['IMG/pao_australiano_superior.png', 'IMG/pao_australiano_inferior.png']
+                            default:
+                                return ['IMG/padrao/pao_superior.png', 'IMG/padrao/pao_inferior.png']
+                        }
+                    },
+
+
+                },
+
+            })
+
+        </script>
 
 </body>
+
 </html>
