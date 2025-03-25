@@ -331,7 +331,7 @@
                         </div>
                     </div>
 
-                    <div class="row nt-2">
+                    <div class="row mt-2">
 
 
                         <div class="col d-flex justify-content-between">
@@ -339,7 +339,7 @@
                             <button type="button" class="btn btn-warning" @click="etapa -= 1"> Editar o Lanche</button>
     
     
-                            <button type="button" class="btn bnt-success" @click="confirmarPedido()"> Confirmar </button>
+                            <button type="button" class="btn btn-success" @click="confirmarPedido()"> Confirmar </button>
     
     
                         </div>
@@ -351,7 +351,7 @@
                 </div>  <!-- fim etapa 2 -->
 
                 <!-- etapa 3 -->
-                <div class="col-md-6" v-if="etapa == 2">
+                <div class="col-md-6" v-if="etapa == 3">
                     <div class="row mt-2">
                         <div class="col">
                             <div class="card">
@@ -371,15 +371,15 @@
                         </div>
                     </div>
 
-                    <div class="row nt-2">
+                    <div class="row mt-2">
 
 
                         <div class="col d-flex justify-content-between">
     
-                            <button type="button" class="btn btn-warning" @click="etapa -= 1">Repetir Pedido</button>
+                            <button type="button" class="btn btn-warning" @click="etapa = 1">Repetir Pedido</button>
     
     
-                            <button type="button" class="btn bnt-success" @click="etapa = 1">Novo Pedido</button>
+                            <button type="button" class="btn btn-success" @click="novoPedido">Novo Pedido</button>
     
     
                         </div>
@@ -402,6 +402,8 @@
             el: '#app',
 
             data: {
+                etapa: 1,
+                
                 inputTipoPao: '', // quando for aspas = *radio* = obrigatório
                 inputSalada: [], // quando for colchetes = *checkbox* = opcional
                 inputMolhos: [],
@@ -411,9 +413,7 @@
 
                 inputNome:'',
                 inputMesa:'',
-
-
-                etapa: 1,
+                novoPedidoAssincrono: null,
             },
 
             // iMAGENS dos ingredientes ( propriedades computadas, reativas ) // a "," fecha função
@@ -549,6 +549,31 @@
                     }
 
                 },
+
+                novoPedido() {
+
+                    this.etapa = 1
+
+                    this.inputTipoPao = ''
+                    this.inputSalada = []
+                    this.inputMolhos = []
+                    this.inputAcompan = []
+                    this.inputQueijo = []
+                    this.inputBurger = ''
+                    this.inputNome = ''
+                    this.inputMesa = ''
+
+                },
+
+            },
+
+            watch: {
+                etapa(novoValor) {
+                    if (novoValor == 1) {
+                        clearTimeout(ths.novoPedidoAssincrono)
+                    }
+                } 
+                
 
             },
 
